@@ -329,9 +329,9 @@ makeTimeSeriesExperimentFromSummarizedExperiment <- function(
     se <- .processSE(se, timepoint, group, replicate)
     object <- .TimeSeriesExperiment(
         se, 
-        timepoint=colData(se)[[timepoint]], 
-        group=colData(se)[[group]], 
-        replicate=colData(se)[[replicate]],  
+        timepoint=colData(se)[["timepoint"]], 
+        group=colData(se)[["group"]], 
+        replicate=colData(se)[["replicate"]],  
         assayCollapsed = matrix(0, 0, 0),
         colDataCollapsed = DataFrame(),
         timeSeries = list(),
