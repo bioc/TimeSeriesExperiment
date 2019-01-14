@@ -5,7 +5,7 @@
 \title{Plot (time) series over clusters.}
 \usage{
 plotTimeSeriesClusters(object, features = NULL, transparency = 0.5,
-  ncol = 4)
+  ncol = 4, scales = "free")
 }
 \arguments{
 \item{object}{A \code{TimeSeriesExperiment} object.}
@@ -14,7 +14,9 @@ plotTimeSeriesClusters(object, features = NULL, transparency = 0.5,
 
 \item{transparency}{transparency of trajectory lines.}
 
-\item{ncol}{number of columns in the facte plot.}
+\item{ncol}{number of columns in the factet plot.}
+
+\item{scales}{character scalar indecating facet scales, by default "free".}
 }
 \value{
 ggplot object

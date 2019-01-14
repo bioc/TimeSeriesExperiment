@@ -5,7 +5,7 @@
 \title{Plot selected time series.}
 \usage{
 plotTimeSeries(object, features = rownames(object), trans = FALSE,
-  smooth = TRUE, ncol = 5)
+  smooth = TRUE, ncol = 5, scales = "free")
 }
 \arguments{
 \item{object}{A \code{TimeSeriesExperiment} object.}
@@ -22,6 +22,8 @@ is plotted.}
 
 \item{ncol}{An integer indicating the number of columns for facetting.
 Default is 5.}
+
+\item{scales}{character scalar indecating facet scales, by default "free".}
 }
 \value{
 list of ggplot objects

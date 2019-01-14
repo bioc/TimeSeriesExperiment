@@ -310,7 +310,7 @@ plotTimeSeriesPCA <- function(object, axis = c(1, 2), m = 20, n = 20,
         mar = c(1, 0, 0, 0), new = TRUE)
     plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
     legend("bottom", inset = c(0, 0), horiz = TRUE,
-            groups.unique, col = linecol, xpd = TRUE,
+            names(linecol), col = linecol, xpd = TRUE,
             lty = c(1,1), lwd = c(3,3))
 }
 
@@ -322,7 +322,8 @@ plotTimeSeriesPCA <- function(object, axis = c(1, 2), m = 20, n = 20,
 #' @param object A \code{TimeSeriesExperiment} object.
 #' @param features A vector of names of selected features to plot.
 #' @param transparency transparency of trajectory lines.
-#' @param ncol number of columns in the facte plot.
+#' @param ncol number of columns in the factet plot.
+#' @param scales character scalar indecating facet scales, by default "free".
 #'
 #' @return ggplot object
 #' @importFrom ggplot2 ggplot aes geom_point geom_line geom_smooth facet_wrap
@@ -338,7 +339,8 @@ plotTimeSeriesPCA <- function(object, axis = c(1, 2), m = 20, n = 20,
 #' plotTimeSeriesClusters(endoderm_small)
 #'
 plotTimeSeriesClusters <- function(object, features = NULL,
-                                   transparency = 0.5, ncol = 4) 
+                                   transparency = 0.5, ncol = 4,
+                                   scales = "free") 
 {
     feature <- cluster <- freq <- group <- timepoint <- 
       value <- category <- used_for_hclust <- NULL
@@ -403,14 +405,14 @@ plotTimeSeriesClusters <- function(object, features = NULL,
             left_join(freq_df) %>%
             arrange(cluster, group)
     )
-    plt <- ggplot(ts_data, aes(y = value , x = timepoint, color = group)) +
+    plt <- ggplot(ts_data, aes(y = value , x = timepoint, color = group)) + 
         geom_line(aes(group = feature), alpha = transparency) +
         geom_point() +
         geom_line(
             data = ts_cluster_mean, lwd = 1.5, color = "grey50",
             aes(group = group)
         ) +
-        facet_wrap(~category, scales = "free", ncol = ncol)
+        facet_wrap(~category, scales = scales, ncol = ncol)
     return(plt)
 }
 
@@ -429,6 +431,7 @@ plotTimeSeriesClusters <- function(object, features = NULL,
 #' is plotted.
 #' @param ncol An integer indicating the number of columns for facetting.
 #' Default is 5.
+#' @param scales character scalar indecating facet scales, by default "free".
 #'
 #' @return list of ggplot objects
 #'
@@ -444,7 +447,8 @@ plotTimeSeriesClusters <- function(object, features = NULL,
 #' plotTimeSeries(endoderm_small, features = feat_to_plot, smooth = FALSE)
 #'
 plotTimeSeries <- function(object, features = rownames(object), 
-                           trans = FALSE, smooth = TRUE, ncol = 5)
+                           trans = FALSE, smooth = TRUE, ncol = 5,
+                           scales = "free")
 {
     feature <- symbol <- timepoint <- value <- group <- category <- NULL
     if (!is(object, "TimeSeriesExperiment")) 
@@ -486,7 +490,7 @@ plotTimeSeries <- function(object, features = rownames(object),
         ts_data,
         aes(x = timepoint, y = value, color = group)) +
         geom_point(size = 1) +
-        facet_wrap(~ symbol, scales = "free", ncol = ncol)
+        facet_wrap(~ symbol, scales = scales, ncol = ncol)
 
     if(length(unique(ts_data$replicate)) > 1) {
         plt <- plt + geom_line(aes(group = category), lty = 3, alpha = 0.7)
