@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/nlhuong/TimeSeriesExperiment.svg?branch=master)](https://travis-ci.org/nlhuong/TimeSeriesExperiment)
+[![Build Status](https://app.travis-ci.com/nlhuong/TimeSeriesExperiment.svg?branch=master)](https://app.travis-ci.com/github/nlhuong/TimeSeriesExperiment)
 <!-- [![codecov](https://codecov.io/gh/nlhuong/TimeSeriesExperiment/branch/master/graph/badge.svg)](https://codecov.io/gh/nlhuong/TimeSeriesExperiment) -->
 
 # TimeSeriesExperiment
