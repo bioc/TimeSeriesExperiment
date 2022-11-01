@@ -1,7 +1,7 @@
 Package: TimeSeriesExperiment
 Type: Package
 Title: Analysis for short time-series data
-Version: 1.16.0
+Version: 1.17.0
 Date: 2021-08-31
 Authors@R: person("Lan Huong", "Nguyen", email="nlhuong90@gmail.com", 
     role=c("cre", "aut"), comment = c(ORCID = "0000-0003-3397-0380"))
